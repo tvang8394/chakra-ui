@@ -1,65 +1,60 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import { Box, Text, SimpleGrid, Icon } from "@chakra-ui/core";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
+    <>
+      <Box paddingY='100px' height='100vh' width='auto'>
+        <Box>
+          <Head>
+            <title>Pivot Trading</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <Box
+            maxW="lg"
+            color="black"
+            fontSize="60px"
+            marginX="auto"
+            mt="10"
           >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+            Welcome to{" "}
+            <Text display="inline" color="Green">
+              Pivot Trading Strategy!
+            </Text>
+          </Box>
+          <Box marginX="auto" maxW="sm">
+            <Text fontSize="20px">Where we focus on ONE trading strategy. </Text>
+          </Box>
+        </Box>
+        <Box maxW="700px" marginX="auto">
+          <SimpleGrid columns={2} mt="10" spacing="30px">
+            <Box border="1px" borderRadius="lg" padding="15px">
+              <Text mb="2" fontSize="17px" fontWeight="bold">
+                The Strategy <Icon name='arrow-forward' size='25px'/>
+              </Text>
+              Learn more about the PTS.
+            </Box>
+            <Box border="1px" borderRadius="lg" padding="15px">
+              <Text mb="2" fontSize="17px" fontWeight="bold">
+                Dashboard <Icon name='arrow-forward' size='25px'/>
+              </Text>
+              Customized dashboard just for the PTS.
+            </Box>
+            <Box border="1px" borderRadius="lg" padding="15px">
+              <Text mb="2" fontSize="17px" fontWeight="bold" >
+                Our Trades <Icon name='arrow-forward' size='25px'/>
+              </Text>
+              Whats a strategy without proof?
+            </Box>
+            <Box border="1px" borderRadius="lg" padding="15px">
+              <Text mb="2" fontSize="17px" fontWeight="bold">
+                Join Now <Icon name='arrow-forward' size='25px'/>
+              </Text>
+              Register for a free account and start using the PTS today.
+            </Box>
+          </SimpleGrid>
+        </Box>
+      </Box>
+    </>
+  );
 }
