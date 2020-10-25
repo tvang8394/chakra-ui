@@ -1,20 +1,17 @@
 import dynamic from "next/dynamic";
+const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
 import { useState, useEffect } from "react";
 
-const useWidth = () => {
+function ChartJS({ alpacaPrice }) {
+  
   const [width, setWidth] = useState(0); // default width, detect on server.
   const handleResize = () => setWidth(window.innerWidth);
   useEffect(() => {
+    setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [handleResize]);
-  return width;
-};
+  }, [width]);
 
-const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
-
-function ChartJS({ alpacaPrice }) {
-  const width = useWidth();
   const trace = {
     x: alpacaPrice["x"],
     close: alpacaPrice["close"],
@@ -31,7 +28,7 @@ function ChartJS({ alpacaPrice }) {
 
   const layout = {
     width: width,
-    height: 600,
+    height: 550,
     dragmode: "zoom",
     margin: {
       r: 60,
@@ -39,7 +36,7 @@ function ChartJS({ alpacaPrice }) {
       b: 40,
       l: 10,
     },
-    showlegend: true,
+    showlegend: false,
     xaxis: {
       autorange: true,
       rangeslider: { range: [alpacaPrice["x"]] },
@@ -56,7 +53,7 @@ function ChartJS({ alpacaPrice }) {
 
   return (
     <div>
-      <Plot data={[trace]} layout={layout} />
+      <Plot data={[trace]} layout={layout} config={{ displayModeBar: false }} />
     </div>
   );
 }

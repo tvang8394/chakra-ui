@@ -1,5 +1,6 @@
 import Header from "../components/Dashboard/Header";
 import ChartJS from "../components/Dashboard/Chart";
+import { useState, useEffect } from "react";
 
 export async function getStaticProps() {
   const symbol = "SPY";
@@ -16,11 +17,13 @@ export async function getStaticProps() {
   };
 }
 
+
+
 export default function Dashboad({ alpacaPrice }) {
   return (
     <>
       <Header />
-      <ChartJS alpacaPrice={alpacaPrice} />
+      <ChartJS alpacaPrice={alpacaPrice}/>
     </>
   );
 }
