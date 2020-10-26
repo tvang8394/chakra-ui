@@ -1,17 +1,30 @@
 import dynamic from "next/dynamic";
 const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Box } from "@chakra-ui/core";
 
-function ChartJS({ alpacaPrice }) {
-  
+function ChartJS() {
+  const { symbol } = useSelector((state) => state.symbol);
   const [width, setWidth] = useState(0); // default width, detect on server.
+  const [alpacaPrice, setAlpacaPrice] = useState([]);
   const handleResize = () => setWidth(window.innerWidth);
   useEffect(() => {
     setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [width]);
+  useEffect(() => {
+    const getPrice = async () => {
+      const res = await fetch(
+        `http://localhost:3000/api/alpacaPriceHistory/${symbol}`
+      );
+      const data = await res.json();
 
+      setAlpacaPrice(data);
+    };
+    getPrice();
+  }, [symbol]);
   const trace = {
     x: alpacaPrice["x"],
     close: alpacaPrice["close"],
@@ -28,10 +41,10 @@ function ChartJS({ alpacaPrice }) {
 
   const layout = {
     width: width,
-    height: 550,
+    height: 500,
     dragmode: "zoom",
     margin: {
-      r: 60,
+      r: 40,
       t: 25,
       b: 40,
       l: 10,
@@ -40,7 +53,6 @@ function ChartJS({ alpacaPrice }) {
     xaxis: {
       autorange: true,
       rangeslider: { range: [alpacaPrice["x"]] },
-      title: "Date",
 
       type: "date",
     },
@@ -52,9 +64,9 @@ function ChartJS({ alpacaPrice }) {
   };
 
   return (
-    <div>
+    <Box bg="#5D6D7E">
       <Plot data={[trace]} layout={layout} config={{ displayModeBar: false }} />
-    </div>
+    </Box>
   );
 }
 

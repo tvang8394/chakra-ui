@@ -1,0 +1,2 @@
+export const GET_SYMBOL = "GET_SYMBOL";
+export const GET_CURRENT_PRICE = "GET_CURRENT_PRICE";
