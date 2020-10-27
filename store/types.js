@@ -1,2 +1,3 @@
 export const GET_SYMBOL = "GET_SYMBOL";
 export const GET_CURRENT_PRICE = "GET_CURRENT_PRICE";
+export const GET_LAST_TRADE = "GET_LAST_TRADE";

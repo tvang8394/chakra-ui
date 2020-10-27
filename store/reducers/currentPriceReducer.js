@@ -1,15 +1,15 @@
 import * as types from "../types";
 
 const initialState = {
-  currentPrice: "",
+  currentPrice: [],
 };
 
 export const currentPriceReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_SYMBOL:
+    case types.GET_CURRENT_PRICE:
       return {
         ...state,
-        currentPrice: action.payload,
+        currentPrice: [action.payload],
       };
     default:
       return state;

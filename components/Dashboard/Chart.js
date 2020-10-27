@@ -1,14 +1,17 @@
 import dynamic from "next/dynamic";
 const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Box } from "@chakra-ui/core";
 
 function ChartJS() {
   const { symbol } = useSelector((state) => state.symbol);
+
+  
   const [width, setWidth] = useState(0); // default width, detect on server.
   const [alpacaPrice, setAlpacaPrice] = useState([]);
   const handleResize = () => setWidth(window.innerWidth);
+  
   useEffect(() => {
     setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);

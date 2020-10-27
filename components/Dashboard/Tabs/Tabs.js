@@ -1,6 +1,6 @@
 import { Box, SimpleGrid } from "@chakra-ui/core";
-import LeftTab from "./LeftTabs";
-import RightTab from './RightTabs';
+import LeftTab from './LeftTabs/LeftTabs';
+import RightTab from './RightTabs/RightTabs';
 
 export default function MainTabs() {
   return (

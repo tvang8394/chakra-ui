@@ -10,8 +10,7 @@ import {
   NumberDecrementStepper,
 } from "@chakra-ui/core";
 import { useState } from "react";
-import { loadFirebase } from "../Firebase/Firebase";
-import { nanoid } from "nanoid";
+import { loadFirebase } from "../../Firebase/Firebase";
 import { useSelector } from "react-redux";
 
 export default function CreatePlay() {
@@ -20,7 +19,6 @@ export default function CreatePlay() {
   const [stopLevel, setStopLevel] = useState(null);
   const [profitLevel, setProfitLevel] = useState(null);
   const [shares, setShares] = useState(null);
-  let newId = nanoid();
 
   const handleSubmit = async () => {
     let firebase = await loadFirebase();
@@ -30,9 +28,9 @@ export default function CreatePlay() {
       ProfitLevel: profitLevel,
       StopLevel: stopLevel,
       Shares: shares,
-      id: newId,
     });
   };
+  
   return (
     <>
       <Stack isInline spacing={3} paddingY={3}>
